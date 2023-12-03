@@ -1,0 +1,120 @@
+<section class="home-page">
+    <div class="wrapper">
+        <div class="section-home">
+            <div class="header-home">
+                <button class="logout-hide" mat-flat-button>Cerrar sesión</button>
+                <!-- <mat-icon class="icon-back" (click)="logout()">arrow_back</mat-icon> -->
+                <span class="title">Lista de usuarios</span>
+                <button class="logout" mat-flat-button color="warn" (click)="logout()">Cerrar sesión</button>
+            </div>
+            <div class="body-home">
+                <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSource">
+                        <!-- 1era fila -->
+                        <ng-container matColumnDef="nrc">
+                            <th mat-header-cell *matHeaderCellDef> NRC </th>
+                            <td mat-cell *matCellDef="let element"> {{element.nrc}} </td>
+                        </ng-container>
+                    
+                        <!-- 2da fila -->
+                        <ng-container matColumnDef="nombre">
+                            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                        </ng-container>
+                    
+                        <!-- 3era fila -->
+                        <ng-container matColumnDef="seccion">
+                            <th mat-header-cell *matHeaderCellDef> Seccion </th>
+                            <td mat-cell *matCellDef="let element"> {{element.seccion}} </td>
+                        </ng-container>
+                    
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="dias">
+                            <th mat-header-cell *matHeaderCellDef> Dias </th>
+                            <td mat-cell *matCellDef="let element"> {{element.dias}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="horario_inicio">
+                            <th mat-header-cell *matHeaderCellDef> Horario inicio </th>
+                            <td mat-cell *matCellDef="let element"> {{element.horario_inicio}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="horario_fin">
+                            <th mat-header-cell *matHeaderCellDef> Horario fin </th>
+                            <td mat-cell *matCellDef="let element"> {{element.horario_fin}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="salon">
+                            <th mat-header-cell *matHeaderCellDef> Salón </th>
+                            <td mat-cell *matCellDef="let element"> {{element.salon}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="programa">
+                            <th mat-header-cell *matHeaderCellDef> Programa educativo </th>
+                            <td mat-cell *matCellDef="let element"> {{element.programa}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="editar">
+                            <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+                            <td mat-cell *matCellDef="let element" class="td-editar">
+                                <i class="bi bi-pencil-square" (click)="goEditar(element.id)"></i> 
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="eliminar">
+                            <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+                            <td mat-cell *matCellDef="let element" class="td-eliminar"> 
+                                <i class="bi bi-trash3-fill" (click)="delete(element.id)"></i>
+                            </td>
+                        </ng-container>
+                    
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                   showFirstLastButtons
+                                   aria-label="Select page of periodic elements">
+                    </mat-paginator>
+                </div>
+                <br><br>
+                <!-- <h1>Ejemplo de tabla en Bootstrap</h1> -->
+                <!-- <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Matrícula</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Correo electrónico</th>
+                        <th scope="col">Fecha de nacimiento</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">CURP</th>
+                        <th scope="col">RFC</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Ocupación</th>
+                        <th scope="col">Actualizar</th>
+                        <th scope="col">Eliminar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let user of lista_usuarios; let i=index">
+                        <td>{{user.matricula}}</td>
+                        <td>{{user.first_name}} {{user.last_name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.fecha_nacimiento |  date: 'dd/MM/yyyy':'UTC'}}</td>
+                        <td>{{user.edad}}</td>
+                        <td>{{user.curp}}</td>
+                        <td>{{user.rfc}}</td>
+                        <td>{{user.telefono}}</td>
+                        <td>{{user.ocupacion}}</td>
+                        <td>
+                            <i class="bi bi-pencil-square" (click)="goEditar(i)"></i> 
+                        </td>
+                        <td>
+                            <i class="bi bi-trash3-fill" (click)="delete(i)"></i>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table> -->
+            </div>
+        </div>
+    </div>
+</section>
