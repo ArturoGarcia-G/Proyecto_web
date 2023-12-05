@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MateriasService } from 'src/app/services/materias.service';
 
 @Component({
   selector: 'app-eliminar-materia-modal',
@@ -9,6 +10,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class EliminarMateriaModalComponent implements OnInit {
 
   constructor(
+    public materiasService: MateriasService,
     private dialogRef: MatDialogRef<EliminarMateriaModalComponent>,
     @Inject (MAT_DIALOG_DATA) public data: any
   ) { }
@@ -21,7 +23,14 @@ export class EliminarMateriaModalComponent implements OnInit {
   }
 
   public eliminarMateria(){
-
+    this.materiasService.eliminarMateria(this.data.id).subscribe(
+      (response)=>{
+        console.log(response);
+        this.dialogRef.close({isDelete:true});
+      }, (error)=>{
+        this.dialogRef.close({isDelete:false});
+      }
+    );
   }
 
 }

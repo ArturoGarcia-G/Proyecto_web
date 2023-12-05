@@ -7,7 +7,8 @@ import { environment } from 'src/environments/environment';
 import { FacadeService } from './facade.service';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 
+    'Content-Type': 'application/json' })
 };
 
 @Injectable({
@@ -15,12 +16,16 @@ const httpOptions = {
 })
 export class MateriasService {
 
+  private token: string;
+
   constructor(
     private http: HttpClient,
     private validatorService: ValidatorService,
     private errorService: ErrorsService,
     private facadeService: FacadeService
-  ) { }
+  ) {
+    this.token = this.facadeService.getSessionToken();
+   }
 
   public esquemaMateria(){
     return {
@@ -79,7 +84,9 @@ export class MateriasService {
   //Aquí van los servicios HTTP
   //Servicio para registrar un nuevo usuario
   public registrarMateria(data: any): Observable <any>{
-    return this.http.post<any>(`${environment.url_api}/materias/`,data, httpOptions);
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
+    return this.http.post<any>(`${environment.url_api}/materiasCrear/`,data, {headers:headers});
   }
 
   //Registrar
@@ -99,5 +106,11 @@ export class MateriasService {
     var token = this.facadeService.getSessionToken();
     var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
     return this.http.put<any>(`${environment.url_api}/materias-edit/`, data, {headers:headers});
+  }
+
+  public eliminarMateria(idMateria: number): Observable <any>{
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
+    return this.http.delete<any>(`${environment.url_api}/materias-edit/${idMateria}/`,{headers:headers});
   }
 }

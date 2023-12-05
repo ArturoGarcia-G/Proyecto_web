@@ -55,9 +55,9 @@
                 <mat-form-field class="mat-select">
                     <mat-label>Selecciona programa educativo</mat-label>
                     <mat-select [(ngModel)]="materia.programa">
-                      <mat-option value="option1">Ingenieria en ciencias de la computacion</mat-option>
-                      <mat-option value="option2">Licenciatura en ciencias de la computacion</mat-option>
-                      <mat-option value="option3">Ingenieria en tecnologias de la informacion</mat-option>
+                      <mat-option value="Ingenieria en ciencias de la computacion">Ingenieria en ciencias de la computacion</mat-option>
+                      <mat-option value="Licenciatura en ciencias de la computacion">Licenciatura en ciencias de la computacion</mat-option>
+                      <mat-option value="Ingenieria en tecnologias de la informacion">Ingenieria en tecnologias de la informacion</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <div *ngIf="errors.programa" class="invalid-feedback">{{ errors.programa }}</div>

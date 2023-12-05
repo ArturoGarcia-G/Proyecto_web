@@ -77,7 +77,7 @@ export class RegistroMateriasScreenComponent {
       (response)=>{
         alert("Materia registrada correctamente");
         console.log("Materia registrada: ", response);
-        this.router.navigate(["/"]);
+        this.router.navigate(["materias"]);
       }, (error)=>{
         alert("No se pudo registrar la materia");
       }
@@ -99,7 +99,7 @@ export class RegistroMateriasScreenComponent {
         alert("Materia editada correctamente");
         console.log("Materia editada: ", response);
         //Si se editó, entonces mandar al home
-        this.router.navigate(["home"]);
+        this.router.navigate(["materias"]);
       }, (error)=>{
         alert("No se pudo editar materia");
       }
