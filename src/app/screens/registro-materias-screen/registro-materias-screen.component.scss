@@ -147,3 +147,13 @@ mat-form-field{
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
     color: #000000!important;
 }
+
+
+.mat-form-field {
+    width: 100%; /* Ajusta el ancho según sea necesario */
+  }
+  
+  .mat-select {
+    height: auto; /* O ajusta la altura según sea necesario */
+    min-height: 4.5em; /* Ajusta según sea necesario */
+  }

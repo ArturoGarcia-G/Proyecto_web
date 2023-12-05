@@ -36,25 +36,29 @@
     
                 <mat-form-field class="mat-input" appearance="outline">
                     <mat-label>Horario inicio</mat-label>
-                    <input matInput [(ngModel)]="materia.hora_inicio" type="time" placeholder="Hora de inicio">
+                    <input matInput [(ngModel)]="materia.horario_inicio" type="time" placeholder="Hora de inicio">
                 </mat-form-field>
-                <div *ngIf="errors.hora_inicio" class="invalid-feedback">{{ errors.hora_inicio }}</div>
+                <div *ngIf="errors.horario_inicio" class="invalid-feedback">{{ errors.horario_inicio }}</div>
 
                 <mat-form-field class="mat-input" appearance="outline">
                     <mat-label>Horario fin</mat-label>
-                    <input matInput [(ngModel)]="materia.hora_fin" type="time" placeholder="Hora de termino">
+                    <input matInput [(ngModel)]="materia.horario_fin" type="time" placeholder="Hora de termino">
                 </mat-form-field>
-                <div *ngIf="errors.hora_fin" class="invalid-feedback">{{ errors.hora_fin }}</div>
+                <div *ngIf="errors.horario_fin" class="invalid-feedback">{{ errors.horario_fin }}</div>
 
                 <mat-form-field class="mat-input" appearance="outline">
                     <mat-label>Salon</mat-label>
                     <input matInput [(ngModel)]="materia.salon" placeholder="Escribe CURP">
                 </mat-form-field>
                 <div *ngIf="errors.salon" class="invalid-feedback">{{ errors.salon }}</div>
-    
-                <mat-form-field class="mat-input" appearance="outline">
-                    <mat-label>Programa educativo</mat-label>
-                    <input matInput [(ngModel)]="materia.programa" placeholder="Programa educativo" >
+
+                <mat-form-field class="mat-select">
+                    <mat-label>Selecciona programa educativo</mat-label>
+                    <mat-select [(ngModel)]="materia.programa">
+                      <mat-option value="option1">Ingenieria en ciencias de la computacion</mat-option>
+                      <mat-option value="option2">Licenciatura en ciencias de la computacion</mat-option>
+                      <mat-option value="option3">Ingenieria en tecnologias de la informacion</mat-option>
+                    </mat-select>
                 </mat-form-field>
                 <div *ngIf="errors.programa" class="invalid-feedback">{{ errors.programa }}</div>
 

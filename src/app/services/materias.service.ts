@@ -86,12 +86,12 @@ export class MateriasService {
   public obtenerListaMaterias(): Observable <any>{
     var token = this.facadeService.getSessionToken();
     var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
-    return this.http.get<any>(`${environment.url_api}/lista-materias/`, {headers:headers});
+    return this.http.get<any>(`${environment.url_api}/materias/`, {headers:headers});
   }
 
   //Obtener un solo usuario dependiendo su ID
   public getMateriaByID(idMateria: Number){
-    return this.http.get<any>(`${environment.url_api}/materias/?id=${idMateria}`,httpOptions); 
+    return this.http.get<any>(`${environment.url_api}/materias/${idMateria}/`,httpOptions); 
   }
 
   //Servicio para actualizar un usuario

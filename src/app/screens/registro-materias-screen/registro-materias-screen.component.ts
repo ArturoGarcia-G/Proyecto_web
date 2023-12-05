@@ -45,13 +45,13 @@ export class RegistroMateriasScreenComponent {
       (response)=>{
         this.materia = response;
         //Agregamos valores faltantes
-        this.materia.nombre = response.materia.nombre;
-        this.materia.seccion = response.materia.seccion;
-        this.materia.dias = response.materia.dias;
-        this.materia.horario_inicio = response.materia.horario_inicio;
-        this.materia.horario_fin = response.materia.horario_fin;
-        this.materia.salon = response.materia.salon;
-        this.materia.programa = response.materia.programa;
+        this.materia.nombre = response.nombre;
+        this.materia.seccion = response.seccion;
+        this.materia.dias = response.dias;
+        this.materia.horario_inicio = response.horario_inicio;
+        this.materia.horario_fin = response.horario_fin;
+        this.materia.salon = response.salon;
+        this.materia.programa = response.programa;
         console.log("Datos user: ", this.materia);
       }, (error)=>{
         alert("No se pudieron obtener los datos de la materia para editar");

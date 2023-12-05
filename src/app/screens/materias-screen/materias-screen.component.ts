@@ -16,7 +16,7 @@ export class MateriasScreenComponent {
   public token : string = "";
   public lista_materias: any[] = [];
 
-  displayedColumns: string[] = ['nrc', 'nombre', 'seccion', 'dias', 'hora_inicio', 'hora_fin', 'salon', 'programa', 'editar', 'eliminar'];
+  displayedColumns: string[] = ['nrc', 'nombre', 'seccion', 'dias', 'horario_inicio', 'horario_fin', 'salon', 'programa', 'editar', 'eliminar'];
   dataSource = new MatTableDataSource<DatosMateria>(this.lista_materias as DatosMateria[]);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -79,12 +79,13 @@ export class MateriasScreenComponent {
       (response)=>{
         this.lista_materias = response;
         console.log("Lista materias: ", this.lista_materias);
+        console.log(this.lista_materias.length);
         if(this.lista_materias.length > 0){
           //Agregar datos del nombre e email
           this.lista_materias.forEach(materia => {
-            materia.nrc = materia.materia.nrc;
-            materia.nombre = materia.materia.nombre;
-            materia.seccion = materia.materia.seccion;
+            materia.nrc = materia.nrc;
+            materia.nombre = materia.nombre;
+            materia.seccion = materia.seccion;
           });
           console.log("Otro materia: ", this.lista_materias);
           
