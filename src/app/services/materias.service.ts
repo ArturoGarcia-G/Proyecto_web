@@ -47,6 +47,8 @@ export class MateriasService {
 
     if(!this.validatorService.required(data["nrc"])){
       error["nrc"] = this.errorService.required;
+    }else if(!this.validatorService.numeric(data["nrc"])){
+      error["nrc"] = this.errorService.numeric;
     }
 
     if(!this.validatorService.required(data["nombre"])){
@@ -55,6 +57,8 @@ export class MateriasService {
 
     if(!this.validatorService.required(data["seccion"])){
       error["seccion"] = this.errorService.required;
+    }else if(!this.validatorService.numeric(data["seccion"])){
+      error["seccion"] = this.errorService.numeric;
     }
 
     if(!this.validatorService.required(data["dias"])){
@@ -105,6 +109,7 @@ export class MateriasService {
   public editarMateria(data: any): Observable <any>{
     var token = this.facadeService.getSessionToken();
     var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
+    console.log(data);
     return this.http.put<any>(`${environment.url_api}/materias-edit/`, data, {headers:headers});
   }
 

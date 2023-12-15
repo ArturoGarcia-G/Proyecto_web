@@ -2,6 +2,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { MateriasService } from 'src/app/services/materias.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EditarMateriaModalComponent } from 'src/app/modals/editar-materia-modal/editar-materia-modal.component';
+
 declare var $:any;
 
 @Component({
@@ -21,7 +24,8 @@ export class RegistroMateriasScreenComponent {
     private materiasService: MateriasService,
     public activatedRoute: ActivatedRoute,
     private router: Router,
-    private location : Location
+    private location : Location,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -73,15 +77,15 @@ export class RegistroMateriasScreenComponent {
     }
     //Validar la contraseña
       //Aquí si todo es correcto vamos a registrar - aquí se manda a llamar al servicio
-    this.materiasService.registrarMateria(this.materia).subscribe(
-      (response)=>{
-        alert("Materia registrada correctamente");
-        console.log("Materia registrada: ", response);
-        this.router.navigate(["materias"]);
-      }, (error)=>{
-        alert("No se pudo registrar la materia");
-      }
-    )
+      this.materiasService.registrarMateria(this.materia).subscribe(
+        (response)=>{
+          alert("Materia registrada correctamente");
+          console.log("Materia registrada: ", response);
+          this.router.navigate(["materias"]);
+        }, (error)=>{
+          alert("No se pudo registrar la materia");
+        }
+      )
   }
 
   public actualizar(){
@@ -94,15 +98,31 @@ export class RegistroMateriasScreenComponent {
     }
     console.log("Pasó la validación");
 
-    this.materiasService.editarMateria(this.materia).subscribe(
-      (response)=>{
-        alert("Materia editada correctamente");
-        console.log("Materia editada: ", response);
-        //Si se editó, entonces mandar al home
-        this.router.navigate(["materias"]);
-      }, (error)=>{
-        alert("No se pudo editar materia");
+    // Aquí si todo es correcto vamos a registrar - aquí se manda a llamar al servicio
+    const dialogRef = this.dialog.open(EditarMateriaModalComponent, {
+      data: { id: this.materia.id,
+        nrc: this.materia.nrc,
+        nombre: this.materia.nombre,
+        seccion: this.materia.seccion,
+        dias: this.materia.dias,
+        horario_inicio: this.materia.horario_inicio,
+        horario_fin: this.materia.horario_fin,
+        salon: this.materia.salon,
+        programa: this.materia.programa
+      }, // Se pasan valores a través del componente
+      height: '268px',
+      width: '328px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.isEdit) {
+        console.log("Materia eliminada");
+        // Recargar página
+        this.location.back();
+      } else {
+        console.log("No se eliminó la materia");
+        // alert("No se eliminó el usuario");
       }
-    );
+    });
   }
 }

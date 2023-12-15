@@ -33,6 +33,7 @@ import { RegistrarProductoScreenComponent } from './screens/registrar-producto-s
 import { RegistroMateriasScreenComponent } from './screens/registro-materias-screen/registro-materias-screen.component';
 import { MateriasScreenComponent } from './screens/materias-screen/materias-screen.component';
 import { EliminarMateriaModalComponent } from './modals/eliminar-materia-modal/eliminar-materia-modal.component';
+import { EditarMateriaModalComponent } from './modals/editar-materia-modal/editar-materia-modal.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { EliminarMateriaModalComponent } from './modals/eliminar-materia-modal/e
     EliminarUserModalComponent,
     RegistroMateriasScreenComponent,
     MateriasScreenComponent,
-    EliminarMateriaModalComponent
+    EliminarMateriaModalComponent,
+    EditarMateriaModalComponent
   ],
   imports: [
     BrowserModule,

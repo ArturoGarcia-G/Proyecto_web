@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { EliminarMateriaModalComponent } from 'src/app/modals/eliminar-materia-modal/eliminar-materia-modal.component';
 import { FacadeService } from 'src/app/services/facade.service';
 import { MateriasService } from 'src/app/services/materias.service';
@@ -29,7 +30,8 @@ export class MateriasScreenComponent {
     private facadeService: FacadeService,
     private materiasService: MateriasService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private location : Location,
   ) { }
 
   ngOnInit(): void {
@@ -72,7 +74,9 @@ export class MateriasScreenComponent {
     },500);
     //this.dataSourceIngresos.paginator = this.paginator;
   }
-
+  public regresar(){
+    this.router.navigate(["home"]);
+  }
   //Obtener lista de usuarios
   public obtenerMaterias(){
     this.materiasService.obtenerListaMaterias().subscribe(
